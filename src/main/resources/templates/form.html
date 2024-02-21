@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="https://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>[[${pageTitle}]]</title>
+    <link rel="stylesheet" type="text/css" th:href="@{/webjars/bootstrap/css/bootstrap.min.css}" />
+</head>
+<body>
+
+<div class="container-fluid text-center">
+    <div align="center" >
+        <h2>[[${pageTitle}]]</h2>
+    </div>
+
+    <form th:action="@{/product/save}" method="post" th:object="${product}" style="max-width: 500px; margin: 0 auto;">
+        <input type="hidden" th:field="*{prodId}">
+        <div class="border border-secondary rounded p-3">
+            <div class="form-group row">
+                <label class="col-sm-4 col-form-label">Product Name : </label>
+                <div class="col-sm-8">
+                    <input type="text" th:field="*{prodName}" class="form-control" required minlength="3" maxlength="25" />
+                </div>
+            </div>
+            <div class="form-group row">
+                <label class="col-sm-4 col-form-label">Manufacture : </label>
+                <div class="col-sm-8">
+                    <input type="text" th:field="*{manufacture}" class="form-control" required minlength="3" maxlength="35" />
+                </div>
+            </div>
+            <div class="form-group row">
+                <label class="col-sm-4 col-form-label">Expiring date : </label>
+                <div class="col-sm-8">
+                    <input type="date" th:field="*{expireDate}" class="form-control" required />
+                </div>
+            </div>
+            <div class="form-group row">
+                <label class="col-sm-4 col-form-label">Unit Price : </label>
+                <div class="col-sm-8">
+                    <input type="number" th:field="*{price}" class="form-control" required />
+                </div>
+            </div>
+            <div class="form-group row">
+                <label class="col-sm-4 col-form-label">Product Quantity : </label>
+                <div class="col-sm-8">
+                    <input type="number" th:field="*{quantity}" class="form-control" required />
+                </div>
+            </div>
+            <div>
+                <button type="submit" class="btn btn-success m-4">Save</button>
+                <button type="submit" class="btn btn-danger m-4" onclick="cancelForm()">Cancel</button>
+            </div>
+        </div>
+    </form>
+
+</div>
+<script type="text/javascript">
+    function cancelForm(){
+    window.location = "/product";
+    }
+</script>
+</body>
+</html>
